@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style media="screen">
+    body{
+        background: #bfb6a2;
+        background: url('https://images.pexels.com/photos/82256/pexels-photo-82256.jpeg?cs=srgb&dl=pexels-tbee-82256.jpg&fm=jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .calculator{
+        background: #ffffff85;
+        border: 10px outset #80808082;
+        padding: 10px 1px 30px;
+        width: 35%;
+        margin: 0 auto;
+    }
+    h1, .result{
+        text-align: center;
+        font-family: 'Pacifico', Georgia;
+        font-size: 45px;
+        font-weight: lighter;
+        color: #000000;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    .result{
+        background: #ffffff80;
+        width: 25vw;
+        margin: 0 auto;
+        font-size: 40px;
+        border-radius: 90px;
+    }
+    form{
+        text-align: center;
+    }
+    .btn-group{
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
+    .button{
+        padding: 1.5vw 3vw;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 10px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        background-color: #54d3dd42;;
+        border: 2px inset #fcfcfc;
+    }
+    .button:nth-child(2){
+        background-color: #e6d53442;
+    }
+    .button:nth-child(4){
+        background-color: #a3ff8942;
+    }
+    .button:last-child{
+        background-color: #f7888842;
+    }
+    .button:hover
+    {
+        background-color: #f3f3f370;
+    }
+    input
+    {
+        width: 25vw;
+        padding: 10px 20px 10px 30px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border-radius: 25px;
+        font-size: 1.2em;
+    }
+
+  </style>
+<title>Calculator</title>
+<script src="https://kit.fontawesome.com/98dde8006d.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="./assets/font-awesome/css/font-awesome.css">
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="calculator">
+<h1>Calculator</h1>
+<form>
+<input class="first-num" type="text" placeholder="First Number"> <br>
+<input class="second-num" type="text" placeholder="Second Number">
+<div class="btn-group">
+<button type="button" class="btn-add button" value="Add"><i class="fas fa-plus"></i></button>
+<button type="button" class="btn-sub button" value="Sub"><i class="fas fa-minus"></i></button> <br>
+<button type="button" class="btn-mul button" value="Mul"><i class="fas fa-times"></i></button>
+<button type="button" class="btn-div button" value="Div"><i class="fas fa-divide"></i></button>
+</div>
+</form>
+<p class="result"></p>
+</div>
+</body>
+</html>
+<script>
+const firstNum = document.querySelector('.first-num')
+const secondNum = document.querySelector('.second-num')
+const result = document.querySelector('.result')
+const btnAdd = document.querySelector('.btn-add')
+const btnSub = document.querySelector('.btn-sub')
+const btnMul = document.querySelector('.btn-mul')
+const btnDiv = document.querySelector('.btn-div')
+btnAdd.addEventListener('click', async () => {
+const sum = {
+firstNum: firstNum.value,
+secondNum: secondNum.value
+}
+const res = await fetch('/add', {
+body: JSON.stringify(sum),
+method: 'POST',
+headers: { 'Content-Type': 'application/json' }
+})
+const data = await res.json()
+result.innerHTML = data.result
+})
+btnSub.addEventListener('click', async () => {
+const sum = {
+firstNum: firstNum.value,
+secondNum: secondNum.value
+}
+const res = await fetch('/sub', {
+body: JSON.stringify(sum),
+method: 'POST',
+headers: { 'Content-Type': 'application/json' }
+})
+const data = await res.json()
+result.innerHTML = data.result
+})
+btnMul.addEventListener('click', async () => {
+const sum = {
+firstNum: firstNum.value,
+secondNum: secondNum.value
+}
+const res = await fetch('/mul', {
+body: JSON.stringify(sum),
+method: 'POST',
+headers: { 'Content-Type': 'application/json' }
+})
+const data = await res.json()
+result.innerHTML = data.result
+})
+btnDiv.addEventListener('click', async () => {
+const sum = {
+firstNum: firstNum.value,
+secondNum: secondNum.value
+}
+const res = await fetch('/div', {
+body: JSON.stringify(sum),
+method: 'POST',
+headers: { 'Content-Type': 'application/json' }
+})
+const data = await res.json()
+result.innerHTML = data.result
+})
+</script>
